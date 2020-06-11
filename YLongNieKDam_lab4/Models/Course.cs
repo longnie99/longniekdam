@@ -21,5 +21,4 @@ namespace YLongNieKDam_lab4.Models
         public byte CategoryId { get; set; }
     }
 
-
 }

@@ -1,0 +1,23 @@
+﻿@model  YLongNieKDam_lab4.ViewModels.FollowingViewModel
+@{
+    ViewBag.Title = "Following";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Following</h2>
+<div class="row">
+    <ul class="course">
+        @foreach(var follow in Model.Followings)
+        {
+            <li>
+                <div class="hii">
+                    <ul>
+                        <li style="list-style:none">
+                            @follow.Name
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

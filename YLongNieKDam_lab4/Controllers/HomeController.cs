@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
 using YLongNieKDam_lab4.Models;
+using YLongNieKDam_lab4.ViewModels;
 
 namespace YLongNieKDam_lab4.Controllers
 {
@@ -18,11 +19,16 @@ namespace YLongNieKDam_lab4.Controllers
         }
         public ActionResult Index()
         {
-            var upcomingCourses = _dbContext.Course
+            var upcommingCourses = _dbContext.Course
                 .Include(c => c.Lecturer)
                 .Include(c => c.Category)
                 .Where(c => c.DateTime > DateTime.Now);
-            return View(upcomingCourses);
+            var viewModel = new CoursesViewModel
+            {
+               UpcommingCourses = upcommingCourses,
+               ShowAction = User.Identity.IsAuthenticated
+            };
+            return View(viewModel);
         }
 
         public ActionResult About()

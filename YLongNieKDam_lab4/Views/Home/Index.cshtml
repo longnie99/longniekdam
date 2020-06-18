@@ -1,7 +1,8 @@
-﻿@model IEnumerable< YLongNieKDam_lab4.Models.Course>
+﻿@model  YLongNieKDam_lab4.ViewModels.CoursesViewModel
 @{
     ViewBag.Title = "Home Page";
 }
+
 
 @*<div class="jumbotron">
     <h1>ASP.NET</h1>
@@ -32,7 +33,7 @@
 </div>*@
 <div class="row">
     <ul class="course">
-        @foreach(var courses in Model )
+        @foreach(var courses in Model.UpcommingCourses )
         {
             <li>
                 <div class="date">
@@ -46,12 +47,18 @@
                 <div class="details">
                     <span class="lecturer">
                         @courses.Lecturer.Name
-                        <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@courses.LecturerId" >Follow</button>
+                        @if (Model.ShowAction)
+                        {
+                            <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@courses.LecturerId">Follow</button>
+                        }
                     </span>
                     <span class="category">
                         @courses.Category.Name
                     </span>
+                   @if (Model.ShowAction)
+                   {
                     <button data-course-id="@courses.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
+                   }
                 </div>
             </li>
         }
